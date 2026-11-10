@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, Text } from 'react-native';
 
 import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OutlinedText } from '@/components/onboarding/outlined-text';
 
 /** Figma: the filled segment is 30 of the 365pt track on screen 1. */
 const PROGRESS = 30 / 365;
@@ -17,9 +18,9 @@ export default function OnboardingStep1() {
       <Text style={onboardingText.emoji} accessible={false}>
         👩‍⚖️
       </Text>
-      <Text style={onboardingText.title} accessibilityRole="header">
+      <OutlinedText style={onboardingText.title} accessibilityRole="header">
         Class Action Settlements
-      </Text>
+      </OutlinedText>
       <Text style={[onboardingText.body, styles.body]}>
         Are when companies have to pay money to customers because they may have done
         something wrong or illegal.

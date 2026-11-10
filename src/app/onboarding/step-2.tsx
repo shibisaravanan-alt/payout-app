@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, Text } from 'react-native';
 
 import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OutlinedText } from '@/components/onboarding/outlined-text';
 import { Space } from '@/constants/theme';
 
 /** Figma: the filled segment is 64 of the 365pt track on screen 2. */
@@ -23,9 +24,9 @@ export default function OnboardingStep2() {
       <Text style={[onboardingText.emoji, styles.emoji]} accessible={false}>
         💰
       </Text>
-      <Text style={onboardingText.title} accessibilityRole="header">
+      <OutlinedText style={onboardingText.title} accessibilityRole="header">
         $1.3 Billion
-      </Text>
+      </OutlinedText>
       <Text style={[onboardingText.body, styles.body]}>
         Companies have to pay money to customers, but it is up to the people to claim the
         reward.

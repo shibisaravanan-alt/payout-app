@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OutlinedText } from '@/components/onboarding/outlined-text';
 import { useOnboarding } from '@/components/onboarding/onboarding-provider';
 import { BRANDS } from '@/constants/brands';
 
@@ -30,7 +31,6 @@ export default function OnboardingStep12() {
   const pickedBrands = BRANDS.filter((brand) => selectedBrandIds.includes(brand.id));
   const brands: readonly Brand[] = pickedBrands.length > 0 ? pickedBrands : BRANDS;
   const totalMillions = brands.reduce((sum, brand) => sum + brand.estimatedPayoutMillions, 0);
-  const subject = pickedBrands.length > 0 ? 'Brands you selected are' : 'These brands are';
 
   return (
     <OnboardingLayout
@@ -47,11 +47,11 @@ export default function OnboardingStep12() {
           accessible
           accessibilityLabel="Mode Mobile"
         />
-        <Text style={[onboardingText.title, styles.amount]} accessibilityRole="header">
+        <OutlinedText style={[onboardingText.title, styles.amount]} accessibilityRole="header">
           {formatBillions(totalMillions)}
-        </Text>
+        </OutlinedText>
         <Text style={[onboardingText.body, styles.text]}>
-          {subject} estimated to pay this much out to Class Actions
+          Brands you selected are estimated to pay this much out to Class Actions
         </Text>
       </View>
     </OnboardingLayout>

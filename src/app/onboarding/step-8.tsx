@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, Text } from 'react-native';
 
 import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OutlinedText } from '@/components/onboarding/outlined-text';
 import { Space } from '@/constants/theme';
 
 /** Figma: the filled segment is 222 of the 365pt track on screen 8. */
@@ -20,9 +21,9 @@ export default function OnboardingStep8() {
       progress={PROGRESS}
       onNext={() => router.push('/onboarding/step-9')}>
       <Text style={[onboardingText.body, styles.intro]}>{'Class Action\nPayout App'}</Text>
-      <Text style={[onboardingText.bigNumber, styles.rank]} accessibilityRole="header">
+      <OutlinedText style={[onboardingText.bigNumber, styles.rank]} outlineWidth={3} accessibilityRole="header">
         #1
-      </Text>
+      </OutlinedText>
       <Text
         style={[onboardingText.bigNumber, styles.stars]}
         numberOfLines={1}

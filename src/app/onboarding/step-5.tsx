@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OutlinedText } from '@/components/onboarding/outlined-text';
 import { Fonts, Palette, Radius, Space } from '@/constants/theme';
 
 /** Figma: the filled segment is 128 of the 365pt track on screen 5. */
@@ -64,9 +65,9 @@ export default function OnboardingStep5() {
         </View>
       </View>
 
-      <Text style={onboardingText.titleCompact} accessibilityRole="header">
+      <OutlinedText style={onboardingText.titleCompact} accessibilityRole="header">
         We find and track everything for you
-      </Text>
+      </OutlinedText>
       <Text style={onboardingText.bodyCompact}>
         When a new settlement opens, we’ll let you know. If you’re eligible, you can use
         ModeMobile for easy filing and skip the headache

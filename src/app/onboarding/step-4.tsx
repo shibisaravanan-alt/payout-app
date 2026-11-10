@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OutlinedText } from '@/components/onboarding/outlined-text';
 import { Palette, Radius, Space } from '@/constants/theme';
 
 /** Figma: the filled segment is 96 of the 365pt track on screen 4. */
@@ -84,9 +85,9 @@ export default function OnboardingStep4() {
           </View>
         ))}
       </View>
-      <Text style={onboardingText.titleCompact} accessibilityRole="header">
+      <OutlinedText style={onboardingText.titleCompact} accessibilityRole="header">
         New Settlements to claim every week
-      </Text>
+      </OutlinedText>
       <Text style={onboardingText.bodyCompact}>
         Many of the largest companies often pay penalties for misleading people. ModeMobile
         finds and organizes these opportunities for you to claim your cash.

@@ -25,7 +25,6 @@ export default function OnboardingStep10() {
     <OnboardingLayout
       background={require('@/assets/images/onboarding/background-2.png')}
       progress={PROGRESS}
-      nextDisabled={payoutMethodId === null}
       onNext={() => router.push('/onboarding/step-11')}>
       <OnboardingQuestion
         question="How would you like to receive payouts?"

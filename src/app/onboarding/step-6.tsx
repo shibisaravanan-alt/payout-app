@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OutlinedText } from '@/components/onboarding/outlined-text';
 import { Fonts, Palette, Space } from '@/constants/theme';
 
 /** Figma: the filled segment is 153 of the 365pt track on screen 6. */
@@ -55,9 +56,9 @@ export default function OnboardingStep6() {
         </View>
       </View>
 
-      <Text style={onboardingText.titleCompact} accessibilityRole="header">
+      <OutlinedText style={onboardingText.titleCompact} accessibilityRole="header">
         {'No proof?\nStill eligible!'}
-      </Text>
+      </OutlinedText>
       <Text style={onboardingText.bodyCompact}>
         You can still file a claim if you lost your receipt. If something requires proof, we’ll
         let you know before you file.

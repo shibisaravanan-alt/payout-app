@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OutlinedText } from '@/components/onboarding/outlined-text';
 import { Fonts, Palette, Space } from '@/constants/theme';
 
 /** Figma: the filled segment is 188 of the 365pt track on screen 7. */
@@ -27,9 +28,9 @@ export default function OnboardingStep7() {
       <Text style={[onboardingText.body, styles.intro]}>
         {'On a yearly average\nyou are owed'}
       </Text>
-      <Text style={[onboardingText.bigNumber, styles.amount]} accessibilityRole="header">
+      <OutlinedText style={[onboardingText.bigNumber, styles.amount]} outlineWidth={3} accessibilityRole="header">
         $397
-      </Text>
+      </OutlinedText>
 
       <View
         style={styles.card}
