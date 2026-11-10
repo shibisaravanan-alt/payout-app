@@ -12,8 +12,6 @@ const PROGRESS = 96 / 365;
 const CIRCLE_SIZE = 93;
 const CLUSTER_WIDTH = 334;
 const CLUSTER_HEIGHT = 243;
-const TITLE_MAX_WIDTH = 343;
-const BODY_MAX_WIDTH = 348;
 
 /**
  * Logo circles at their Figma positions, relative to the cluster's top-left corner.
@@ -86,10 +84,10 @@ export default function OnboardingStep4() {
           </View>
         ))}
       </View>
-      <Text style={[onboardingText.title, styles.title]} accessibilityRole="header">
+      <Text style={onboardingText.titleCompact} accessibilityRole="header">
         New Settlements to claim every week
       </Text>
-      <Text style={[onboardingText.body, styles.body]}>
+      <Text style={onboardingText.bodyCompact}>
         Many of the largest companies often pay penalties for misleading people. ModeMobile
         finds and organizes these opportunities for you to claim your cash.
       </Text>
@@ -111,16 +109,5 @@ const styles = StyleSheet.create({
     borderRadius: Radius.full,
     backgroundColor: Palette.neutral[0],
     overflow: 'hidden',
-  },
-  /** Figma widths are wider than the content area on smaller phones, so cap instead of fix. */
-  title: {
-    width: '100%',
-    maxWidth: TITLE_MAX_WIDTH,
-    fontSize: 30,
-  },
-  body: {
-    width: '100%',
-    maxWidth: BODY_MAX_WIDTH,
-    lineHeight: 20,
   },
 });

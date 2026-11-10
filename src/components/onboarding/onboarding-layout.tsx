@@ -1,7 +1,7 @@
 import { Image, type ImageSource } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
 import type { ReactNode } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, type TextStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ProgressBar } from '@/components/onboarding/progress-bar';
@@ -63,6 +63,27 @@ export function OnboardingLayout({
   );
 }
 
+const title = {
+  width: TEXT_WIDTH,
+  fontFamily: Fonts.sans,
+  fontSize: 40,
+  lineHeight: 40,
+  fontWeight: 900,
+  fontStyle: 'italic',
+  letterSpacing: 2,
+  textAlign: 'center',
+  color: Palette.neutral[0],
+} satisfies TextStyle;
+
+const body = {
+  ...Typography.bodyLarge,
+  width: TEXT_WIDTH,
+  fontFamily: Fonts.sans,
+  fontWeight: 700,
+  textAlign: 'center',
+  color: Palette.neutral[0],
+} satisfies TextStyle;
+
 /** Text styles shared by the onboarding screens. */
 export const onboardingText = StyleSheet.create({
   emoji: {
@@ -70,24 +91,24 @@ export const onboardingText = StyleSheet.create({
     lineHeight: 144,
     textAlign: 'center',
   },
-  title: {
-    width: TEXT_WIDTH,
-    fontFamily: Fonts.sans,
-    fontSize: 40,
-    lineHeight: 40,
-    fontWeight: 900,
-    fontStyle: 'italic',
-    letterSpacing: 2,
-    textAlign: 'center',
-    color: Palette.neutral[0],
+  /** Screens 1–3 style. */
+  title,
+  body,
+  /**
+   * Screens 4 onward: smaller title and tighter body. Figma widths are wider than the
+   * content area on smaller phones, so these cap the width instead of fixing it.
+   */
+  titleCompact: {
+    ...title,
+    width: '100%',
+    maxWidth: 343,
+    fontSize: 30,
   },
-  body: {
-    ...Typography.bodyLarge,
-    width: TEXT_WIDTH,
-    fontFamily: Fonts.sans,
-    fontWeight: 700,
-    textAlign: 'center',
-    color: Palette.neutral[0],
+  bodyCompact: {
+    ...body,
+    width: '100%',
+    maxWidth: 348,
+    lineHeight: 20,
   },
 });
 

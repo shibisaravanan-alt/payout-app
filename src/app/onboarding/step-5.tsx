@@ -9,8 +9,6 @@ import { Fonts, Palette, Radius, Space } from '@/constants/theme';
 const PROGRESS = 128 / 365;
 
 /** Figma sizes. */
-const TITLE_MAX_WIDTH = 343;
-const BODY_MAX_WIDTH = 348;
 const FRONT_CARD_HEIGHT = 75;
 const BACK_CARD_HEIGHT = 70;
 /** The back card sits 41pt lower and 31pt narrower on each side than the front card. */
@@ -40,8 +38,7 @@ export default function OnboardingStep5() {
     <OnboardingLayout
       background={require('@/assets/images/onboarding/background-2.png')}
       progress={PROGRESS}
-      // TODO: go to onboarding screen 6 once it exists.
-      onNext={() => router.push('/home')}>
+      onNext={() => router.push('/onboarding/step-6')}>
       <Text style={[onboardingText.emoji, styles.emoji]} accessible={false}>
         🔔
       </Text>
@@ -67,10 +64,10 @@ export default function OnboardingStep5() {
         </View>
       </View>
 
-      <Text style={[onboardingText.title, styles.title]} accessibilityRole="header">
+      <Text style={onboardingText.titleCompact} accessibilityRole="header">
         We find and track everything for you
       </Text>
-      <Text style={[onboardingText.body, styles.body]}>
+      <Text style={onboardingText.bodyCompact}>
         When a new settlement opens, we’ll let you know. If you’re eligible, you can use
         ModeMobile for easy filing and skip the headache
       </Text>
@@ -157,16 +154,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 24,
     color: Palette.neutral[9999],
-  },
-  /** Figma widths are wider than the content area on smaller phones, so cap instead of fix. */
-  title: {
-    width: '100%',
-    maxWidth: TITLE_MAX_WIDTH,
-    fontSize: 30,
-  },
-  body: {
-    width: '100%',
-    maxWidth: BODY_MAX_WIDTH,
-    lineHeight: 20,
   },
 });
