@@ -110,6 +110,18 @@ export const onboardingText = StyleSheet.create({
     maxWidth: 348,
     lineHeight: 20,
   },
+  /** Huge black-italic figure with a drop shadow, e.g. "$397" and "#1". */
+  bigNumber: {
+    ...title,
+    width: '100%',
+    fontSize: 96,
+    /** Figma's 40pt line height would clip a 96pt glyph in React Native. */
+    lineHeight: 110,
+    letterSpacing: 1.5,
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
+    textShadowOffset: { width: 0, height: 4 },
+    textShadowRadius: 4,
+  },
 });
 
 const styles = StyleSheet.create({

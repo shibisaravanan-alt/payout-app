@@ -23,12 +23,11 @@ export default function OnboardingStep7() {
     <OnboardingLayout
       background={require('@/assets/images/onboarding/background-2.png')}
       progress={PROGRESS}
-      // TODO: go to onboarding screen 8 once it exists.
-      onNext={() => router.push('/home')}>
+      onNext={() => router.push('/onboarding/step-8')}>
       <Text style={[onboardingText.body, styles.intro]}>
         {'On a yearly average\nyou are owed'}
       </Text>
-      <Text style={[onboardingText.title, styles.amount]} accessibilityRole="header">
+      <Text style={[onboardingText.bigNumber, styles.amount]} accessibilityRole="header">
         $397
       </Text>
 
@@ -59,14 +58,6 @@ const styles = StyleSheet.create({
     width: INTRO_WIDTH,
   },
   amount: {
-    width: '100%',
-    fontSize: 96,
-    /** Figma's 40pt line height would clip a 96pt glyph in React Native. */
-    lineHeight: 110,
-    letterSpacing: 1.5,
-    textShadowColor: 'rgba(0, 0, 0, 0.25)',
-    textShadowOffset: { width: 0, height: 4 },
-    textShadowRadius: 4,
     /** Figma leaves a larger gap between the amount and the card. */
     marginBottom: Space[1.5],
   },
