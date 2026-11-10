@@ -16,7 +16,7 @@ export default function OnboardingStep2() {
     <OnboardingLayout
       background={require('@/assets/images/onboarding/background-2.png')}
       progress={PROGRESS}
-      onNext={() => router.push('/onboarding/step-3')}>
+      onNext={() => router.push('/onboarding/step-4')}>
       <Text style={[onboardingText.body, styles.intro]}>
         {'Last year people\nlike you were awarded'}
       </Text>

@@ -1,36 +1,59 @@
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text } from 'react-native';
 
-import { OnboardingLayout, onboardingText } from '@/components/onboarding/onboarding-layout';
+import { OnboardingLayout } from '@/components/onboarding/onboarding-layout';
+import { Fonts, Palette, Typography } from '@/constants/theme';
 
-/** Figma: the filled segment is 30 of the 365pt track on screen 1. */
-const PROGRESS = 30 / 365;
+/** Figma sizes. */
+const LOGO_WIDTH = 263;
+const LOGO_HEIGHT = 108;
+const BUTTON_WIDTH = 305;
+const FOOTER_WIDTH = 299;
 
-export default function OnboardingStep1() {
+/** Figma screen 3: the welcome screen that starts onboarding. */
+export default function OnboardingWelcome() {
   const router = useRouter();
 
   return (
     <OnboardingLayout
-      background={require('@/assets/images/onboarding/background.png')}
-      progress={PROGRESS}
-      onNext={() => router.push('/onboarding/step-2')}>
-      <Text style={onboardingText.emoji} accessible={false}>
-        👩‍⚖️
-      </Text>
-      <Text style={onboardingText.title} accessibilityRole="header">
-        Class Action Settlements
-      </Text>
-      <Text style={[onboardingText.body, styles.body]}>
-        Are when companies have to pay money to customers because they may have done
-        something wrong or illegal.
-      </Text>
+      background={require('@/assets/images/onboarding/background-2.png')}
+      buttonLabel="Get Started"
+      buttonWidth={BUTTON_WIDTH}
+      onNext={() => router.push('/onboarding/step-1')}
+      footer={
+        <Text style={styles.terms}>
+          by continuing you agree to our{' '}
+          {/* TODO: open the Terms of Use and Class Action Terms once their URLs are known. */}
+          <Text style={styles.termsLink}>Terms of Use</Text> and{' '}
+          <Text style={styles.termsLink}>Class Action Terms</Text>
+        </Text>
+      }>
+      <Image
+        source={require('@/assets/images/onboarding/mode-mobile-logo.png')}
+        style={styles.logo}
+        contentFit="cover"
+        accessible
+        accessibilityLabel="Mode Mobile"
+      />
     </OnboardingLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  /** Screen 1 uses Figma's "normal" line height rather than the body-large token. */
-  body: {
-    lineHeight: 20,
+  logo: {
+    width: LOGO_WIDTH,
+    height: LOGO_HEIGHT,
+  },
+  terms: {
+    ...Typography.bodyLarge,
+    width: FOOTER_WIDTH,
+    fontFamily: Fonts.sans,
+    fontWeight: 500,
+    textAlign: 'center',
+    color: Palette.neutral[0],
+  },
+  termsLink: {
+    textDecorationLine: 'underline',
   },
 });
