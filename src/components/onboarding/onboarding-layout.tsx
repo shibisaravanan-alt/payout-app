@@ -20,6 +20,8 @@ type OnboardingLayoutProps = {
   buttonLabel?: string;
   /** Defaults to the Figma "Next" button width. */
   buttonWidth?: number;
+  /** Dims the button and ignores taps, e.g. until the user makes a required choice. */
+  nextDisabled?: boolean;
   /** Shown under the button, e.g. terms text. */
   footer?: ReactNode;
   children: ReactNode;
@@ -32,6 +34,7 @@ export function OnboardingLayout({
   onNext,
   buttonLabel = 'Next',
   buttonWidth = BUTTON_WIDTH,
+  nextDisabled = false,
   footer,
   children,
 }: OnboardingLayoutProps) {
@@ -47,11 +50,14 @@ export function OnboardingLayout({
 
         <Pressable
           accessibilityRole="button"
+          accessibilityState={{ disabled: nextDisabled }}
+          disabled={nextDisabled}
           onPress={onNext}
           style={({ pressed }) => [
             styles.button,
             { width: buttonWidth },
             pressed && styles.buttonPressed,
+            nextDisabled && styles.buttonDisabled,
           ]}>
           <Text style={styles.buttonText}>{buttonLabel}</Text>
         </Pressable>
@@ -151,6 +157,9 @@ const styles = StyleSheet.create({
   },
   buttonPressed: {
     opacity: 0.8,
+  },
+  buttonDisabled: {
+    opacity: 0.5,
   },
   buttonText: {
     fontFamily: Fonts.sans,
