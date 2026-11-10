@@ -1,50 +1,39 @@
-import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
+import { Image, type ImageSource } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
+import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ProgressBar } from '@/components/onboarding/progress-bar';
 import { Fonts, Palette, Radius, Space, Typography } from '@/constants/theme';
 
-/** Figma: the filled segment is 30 of the 365pt track on screen 1. */
-const PROGRESS = 30 / 365;
 /** Figma text and button widths, so line breaks match the design. */
 const TEXT_WIDTH = 282;
 const BUTTON_WIDTH = 297;
 
-export default function OnboardingScreen() {
-  const router = useRouter();
+type OnboardingLayoutProps = {
+  background: ImageSource | number;
+  /** 0 to 1. */
+  progress: number;
+  onNext: () => void;
+  children: ReactNode;
+};
 
+/** Shared frame for onboarding screens: background, progress bar, content, Next button. */
+export function OnboardingLayout({ background, progress, onNext, children }: OnboardingLayoutProps) {
   return (
     <View style={styles.container}>
       <StatusBar style="dark" />
-      <Image
-        source={require('@/assets/images/onboarding/background.png')}
-        style={StyleSheet.absoluteFill}
-        contentFit="cover"
-      />
+      <Image source={background} style={StyleSheet.absoluteFill} contentFit="cover" />
 
       <SafeAreaView style={styles.safeArea}>
-        <ProgressBar progress={PROGRESS} style={styles.progress} />
+        <ProgressBar progress={progress} style={styles.progress} />
 
-        <View style={styles.content}>
-          <Text style={styles.emoji} accessible={false}>
-            👩‍⚖️
-          </Text>
-          <Text style={styles.title} accessibilityRole="header">
-            Class Action Settlements
-          </Text>
-          <Text style={styles.body}>
-            Are when companies have to pay money to customers because they may have done
-            something wrong or illegal.
-          </Text>
-        </View>
+        <View style={styles.content}>{children}</View>
 
         <Pressable
           accessibilityRole="button"
-          // TODO: go to onboarding screen 2 once it exists.
-          onPress={() => router.push('/home')}
+          onPress={onNext}
           style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}>
           <Text style={styles.buttonText}>Next</Text>
         </Pressable>
@@ -53,24 +42,8 @@ export default function OnboardingScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Palette.neutral[0],
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Space[4] + Space[1],
-  },
-  progress: {
-    marginTop: Space[1],
-  },
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: Space[3],
-  },
+/** Text styles shared by the onboarding screens. */
+export const onboardingText = StyleSheet.create({
   emoji: {
     fontSize: 120,
     lineHeight: 144,
@@ -92,9 +65,28 @@ const styles = StyleSheet.create({
     width: TEXT_WIDTH,
     fontFamily: Fonts.sans,
     fontWeight: 700,
-    lineHeight: 20,
     textAlign: 'center',
     color: Palette.neutral[0],
+  },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Palette.neutral[0],
+  },
+  safeArea: {
+    flex: 1,
+    paddingHorizontal: Space[4] + Space[1],
+  },
+  progress: {
+    marginTop: Space[1],
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: Space[3],
   },
   button: {
     alignSelf: 'center',
