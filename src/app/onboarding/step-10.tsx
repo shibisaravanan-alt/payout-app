@@ -26,8 +26,7 @@ export default function OnboardingStep10() {
       background={require('@/assets/images/onboarding/background-2.png')}
       progress={PROGRESS}
       nextDisabled={payoutMethodId === null}
-      // TODO: go to onboarding screen 11 once it exists.
-      onNext={() => router.push('/home')}>
+      onNext={() => router.push('/onboarding/step-11')}>
       <OnboardingQuestion
         question="How would you like to receive payouts?"
         hint="This will be set as the default payout method when claims are filled"
