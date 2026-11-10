@@ -31,8 +31,7 @@ export default function OnboardingStep6() {
     <OnboardingLayout
       background={require('@/assets/images/onboarding/background-2.png')}
       progress={PROGRESS}
-      // TODO: go to onboarding screen 7 once it exists.
-      onNext={() => router.push('/home')}>
+      onNext={() => router.push('/onboarding/step-7')}>
       <View
         style={styles.card}
         accessible
