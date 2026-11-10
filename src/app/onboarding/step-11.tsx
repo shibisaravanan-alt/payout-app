@@ -19,8 +19,7 @@ const MESSAGE_WIDTH = 312;
 
 /** Replace rather than push, so going back from the next screen skips the loading screen. */
 function goNext(router: ReturnType<typeof useRouter>) {
-  // TODO: go to onboarding screen 12 once it exists.
-  router.replace('/home');
+  router.replace('/onboarding/step-12');
 }
 
 export default function OnboardingStep11() {
