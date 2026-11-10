@@ -16,8 +16,7 @@ export default function OnboardingStep2() {
     <OnboardingLayout
       background={require('@/assets/images/onboarding/background-2.png')}
       progress={PROGRESS}
-      // TODO: go to onboarding screen 3 once it exists.
-      onNext={() => router.push('/home')}>
+      onNext={() => router.push('/onboarding/step-3')}>
       <Text style={[onboardingText.body, styles.intro]}>
         {'Last year people\nlike you were awarded'}
       </Text>

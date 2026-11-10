@@ -13,30 +13,51 @@ const BUTTON_WIDTH = 297;
 
 type OnboardingLayoutProps = {
   background: ImageSource | number;
-  /** 0 to 1. */
-  progress: number;
+  /** 0 to 1. Omit to hide the progress bar. */
+  progress?: number;
   onNext: () => void;
+  /** Defaults to "Next". */
+  buttonLabel?: string;
+  /** Defaults to the Figma "Next" button width. */
+  buttonWidth?: number;
+  /** Shown under the button, e.g. terms text. */
+  footer?: ReactNode;
   children: ReactNode;
 };
 
-/** Shared frame for onboarding screens: background, progress bar, content, Next button. */
-export function OnboardingLayout({ background, progress, onNext, children }: OnboardingLayoutProps) {
+/** Shared frame for onboarding screens: background, progress bar, content, button, footer. */
+export function OnboardingLayout({
+  background,
+  progress,
+  onNext,
+  buttonLabel = 'Next',
+  buttonWidth = BUTTON_WIDTH,
+  footer,
+  children,
+}: OnboardingLayoutProps) {
   return (
     <View style={styles.container}>
       <StatusBar style="dark" />
       <Image source={background} style={StyleSheet.absoluteFill} contentFit="cover" />
 
       <SafeAreaView style={styles.safeArea}>
-        <ProgressBar progress={progress} style={styles.progress} />
+        {progress !== undefined && <ProgressBar progress={progress} style={styles.progress} />}
 
         <View style={styles.content}>{children}</View>
 
         <Pressable
           accessibilityRole="button"
           onPress={onNext}
-          style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}>
-          <Text style={styles.buttonText}>Next</Text>
+          style={({ pressed }) => [
+            styles.button,
+            { width: buttonWidth },
+            pressed && styles.buttonPressed,
+          ]}>
+          <Text style={styles.buttonText}>{buttonLabel}</Text>
         </Pressable>
+
+        {/* Always rendered so the button sits at the same height on every screen. */}
+        <View style={styles.footer}>{footer}</View>
       </SafeAreaView>
     </View>
   );
@@ -90,8 +111,6 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: 'center',
-    width: BUTTON_WIDTH,
-    marginBottom: Space[4] * 2,
     paddingVertical: 19,
     borderRadius: Radius.full,
     backgroundColor: Palette.neutral[0],
@@ -106,5 +125,10 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontWeight: 600,
     color: Palette.purple[600],
+  },
+  footer: {
+    minHeight: Space[4] * 2,
+    paddingTop: Space[2],
+    alignItems: 'center',
   },
 });
