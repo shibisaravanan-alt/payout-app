@@ -18,8 +18,7 @@ export default function OnboardingStep8() {
     <OnboardingLayout
       background={require('@/assets/images/onboarding/background-2.png')}
       progress={PROGRESS}
-      // TODO: go to onboarding screen 9 once it exists.
-      onNext={() => router.push('/home')}>
+      onNext={() => router.push('/onboarding/step-9')}>
       <Text style={[onboardingText.body, styles.intro]}>{'Class Action\nPayout App'}</Text>
       <Text style={[onboardingText.bigNumber, styles.rank]} accessibilityRole="header">
         #1
